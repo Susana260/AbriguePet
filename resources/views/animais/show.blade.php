@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('title','Listagem - {{$animal->nome}}')
 @section('content') 
-    <h1>Listagem de animais</h1>
+    <h1>Listagem - {{$animal->nome}}</h1>
     <ul>
         <li>ID: {{$animal->id}}</li>
         <li>Animal: {{$animal->animal}}</li>
