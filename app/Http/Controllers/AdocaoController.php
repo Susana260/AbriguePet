@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AbriguePet;
 
 class AdocaoController extends Controller
 {
@@ -13,7 +14,8 @@ class AdocaoController extends Controller
      */
     public function index()
     {
-        //
+        $animal = AbriguePet::all(); 
+        return view('animais.index',array('animal' => $animal));
     }
 
     /**
@@ -45,7 +47,8 @@ class AdocaoController extends Controller
      */
     public function show($id)
     {
-        //
+        $animal = AbriguePet::find($id);
+        return view('animais.show',array('animal' => $animal));
     }
 
     /**
@@ -56,7 +59,7 @@ class AdocaoController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
