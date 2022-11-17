@@ -8,6 +8,7 @@
         <li>Nome: {{$animal->nome}}</li>
         <li>Raça: {{$animal->raca}}</li>
         <li>Doença: {{$animal->doenca}}</li>
+        <li>Imagem: {{$animal->imagem}}</li>
     </ul>
     <a href="{{url('contatos')}}">Voltar</a>
 @endsection
