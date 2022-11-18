@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AbriguePet;
+use Session;
 
 class AdocaoController extends Controller
 {
@@ -15,7 +16,7 @@ class AdocaoController extends Controller
     public function index()
     {
         $animal = AbriguePet::all(); 
-        return view('animais.index',array('animal' => $animal));
+        return view('animais.index',array('animal' -> $animal,'buscar'));
     }
 
     /**
@@ -25,7 +26,7 @@ class AdocaoController extends Controller
      */
     public function create()
     {
-        //
+        //return view('pet.create);
     }
 
     /**
@@ -36,7 +37,18 @@ class AdocaoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $animal = new AbriguePet();
+        $animal->animal = $request->input('animal');
+        $animal->nome = $request->input('nome');
+        $animal->raca = $request->input('raca');
+        $animal->doenca = $request->input('animal');
+        $animal->imagem = $request->input('imagem');
+        if($animal->save()) {
+            return redirect('animais');
+        }
+
+
+
     }
 
     /**
@@ -49,6 +61,7 @@ class AdocaoController extends Controller
     {
         $animal = AbriguePet::find($id);
         return view('animais.show',array('animal' => $animal));
+        
     }
 
     /**
@@ -59,7 +72,8 @@ class AdocaoController extends Controller
      */
     public function edit($id)
     {
-        
+        $animal = AbriguePet::find($id);
+        return view('animais.edit',array('animal' => $animal));
     }
 
     /**
@@ -71,7 +85,16 @@ class AdocaoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $animal = AbriguePet::find();
+        $animal->animal = $request->input('animal');
+        $animal->nome = $request->input('nome');
+        $animal->raca = $request->input('raca');
+        $animal->doenca = $request->input('animal');
+        $animal->imagem = $request->input('imagem');
+        if($animal->save()) {
+            Session::flash('mensagem','Informações alteradas com sucesso');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -82,6 +105,9 @@ class AdocaoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $animal = AbriguePet::find($id);
+        $animal->delete();
+        Session::flash('mensagem','Animal excluído');
+        return redirect(url('animais'));
     }
 }

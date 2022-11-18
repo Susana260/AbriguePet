@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('adocao/');
 });
+Route::get('animais/buscar',[AdocaoController::class,"buscar"]);
 
 Route::resource('adocao', AdocaoController::class);
+
